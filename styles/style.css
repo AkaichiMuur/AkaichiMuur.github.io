@@ -139,6 +139,7 @@ header {
     }
     .let_4 {
         font-size: 14px;
+        text-align: center;
     }
     .box_3 {
         background-color: #00897b;
@@ -339,6 +340,7 @@ footer {
     }
     a.reg, a.auth {
         width: 165px;
+        align-self: center;
     }
     a.reg {
         margin-bottom: 30px;
