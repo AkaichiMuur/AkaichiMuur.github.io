@@ -349,6 +349,10 @@ footer {
     a.reg {
         margin-bottom: 30px;
     }
+    div.box_3 {
+        margin-bottom: 0;
+
+    }
     div.box_4 {
         flex-direction: column;
         align-items: center;
@@ -363,6 +367,9 @@ footer {
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+    p.let_5, p.let_4 {
+        text-align: justify;
     }
     p.let_6 {
         margin-bottom: 70px;
