@@ -207,7 +207,7 @@ header {
             .data_from {
                 display: flex;
                 flex-direction: row;
-                margin: 10px 0 20px 0;
+                margin: 10px 0;
                 font-size: 15px;
             }
                 .data {
@@ -309,3 +309,49 @@ footer {
             font-size: 14px;
         }
 
+
+
+
+
+@media screen and (max-width: 720px) {
+    div.main_box_1 {
+        flex-direction: column;
+        align-items: center;
+    }
+    div.box_1 {
+        margin-right: 0;
+    }
+    div.box_2 {
+        flex-direction: row;
+        min-height: auto;
+        width: 75%;
+    }
+    a.reg, a.auth {
+        width: 165px;
+    }
+    div.box_4 {
+        flex-direction: column;
+        align-items: center;
+    }
+    div.pic {
+        width: 350px;
+    }
+    div.data_from {
+        flex-direction: column;
+        align-items: center;
+    }
+    p.data {
+        margin: 0;
+    }
+    a.name {
+        margin-top: 20px;
+    }
+    div.info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    p.let_6 {
+        margin-bottom: 70px;
+    }
+}
