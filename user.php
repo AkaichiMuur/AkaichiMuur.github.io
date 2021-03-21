@@ -11,6 +11,11 @@ if (empty($_SESSION['username']))
 
 $SESSIONname = $_SESSION['username'];
 
+$query_user = "SELECT `login`, `fio` FROM `users` WHERE `login` = '$SESSIONname'";
+$result_user = mysqli_query($link, $query_user) or die ('Ошибка ' . mysqli_error($link));
+$row_data = mysqli_fetch_assoc($result_user);
+$fio = $row_data['fio'];
+
 ?>
 
 
@@ -34,7 +39,7 @@ $SESSIONname = $_SESSION['username'];
     <main>
         <div class="main_box_1">
             <div class="box_user_1">
-                <p class="username"> Личный кабинет: USERNAME</p>
+                <p class="username"> Личный кабинет: <? echo $fio; ?></p>
             </div>
             <div class="box_user_2">
                 <form method="POST" action="logout.php" class="box_submit">
@@ -51,7 +56,7 @@ $SESSIONname = $_SESSION['username'];
                     <a href="#" class="sort"> Отклоненные </a>
                 </div>
                 <div class="box_user_4">
-                    <a href="create_application.php" class="new_appl"> Создать новуюя заявку </a>
+                    <a href="create_application.php" class="new_appl"> Создать новую заявку </a>
                 </div>
             </div>
 
@@ -64,9 +69,10 @@ $SESSIONname = $_SESSION['username'];
                     $row_user = mysqli_fetch_array($result_user);
                     $id_user = $row_user[0];
 
-                    $query_application = "SELECT `id_app`, `name_app`, `description_app`, `description_decline`, `id_category`, `before_img`, `after_img`, `status_app`, `date_app`, `id_user` 
+                    $query_application = "SELECT `id_app`, `name_app`, `description_app`, `description_decline`, `category`, `before_img`, `after_img`, `status_app`, `date_app`, `id_user` 
                     FROM `application` 
-                    WHERE `id_user` = '$id_user'";
+                    WHERE `id_user` = '$id_user'
+                    ORDER BY `application`.`date_app` DESC";
                     $result_applicaton = mysqli_query($link, $query_application) or die('Ошибка '. mysqli_error($link));
 
                     while ($row_application = mysqli_fetch_array($result_applicaton)) 
@@ -76,17 +82,12 @@ $SESSIONname = $_SESSION['username'];
                         $name_app = $row_application[1];
                         $description_app = $row_application[2];
                         $description_decline = $row_application[3];
-                        $id_category = $row_application[4];
+                        $category = $row_application[4];
                         $before_img = $row_application[5];
                         $after_img = $row_application[6];
                         $status_app = $row_application[7];
                         $date_app = $row_application[8];
                         $id_user = $row_application[9];
-
-                        $query_category = "SELECT `id_category`, `name_category` FROM `category` WHERE `id_category` = '$id_category'";
-                        $result_category = mysqli_query($link, $query_category) or die('Ошибка '. mysqli_error($link));
-                        $row_category = mysqli_fetch_assoc($result_category);
-                        $name_category = $row_category['name_category'];
 
                         echo "<div class='box_4'>";
                             echo "<p class='status'> $status_app </p>";

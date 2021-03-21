@@ -3,6 +3,8 @@
 session_start();
 require_once "connection.php";
 
+
+
 ?>
 
 
@@ -31,8 +33,36 @@ require_once "connection.php";
             </div>
 
             <div class="box_2">
-                <a href="reg.php" class="reg"> РЕГИСТРАЦИЯ </a>
-                <a href="auth.php" class="auth"> ВХОД </a>
+
+            <?php
+
+                $SESSIONname = $_SESSION['username'];
+
+                $query_role = "SELECT `login`, `role` FROM `users` WHERE `login` = '$SESSIONname'";
+                $result_role = mysqli_query($link, $query_role) or die('Ошибка ' . mysqli_error($link));
+                $row_data = mysqli_fetch_assoc($result_role);
+                $role = $row_data['role'];
+
+                if ($role == 1) 
+                {
+                    echo "<a href='user.php' class='reg'> ЛИЧНЫЙ КАБИНЕТ </a>";
+                    echo "<form method='POST' action='logout.php' class='box_submit'>
+                            <input type='submit' class='auth' value='ВЫХОД'> 
+                        </form>";
+                }
+                else if ($role == 2)
+                {
+                    echo "<a href='admin.php' class='reg'> ПАНЕЛЬ АДМИНИСТРАТОРА </a>";
+                    echo "<form method='POST' action='logout.php' class='box_submit'>
+                            <input type='submit' class='auth' value='ВЫХОД'> 
+                        </form>";
+                }
+                else 
+                {
+                    echo "<a href='reg.php' class='reg'> РЕГИСТРАЦИЯ </a>";
+                    echo "<a href='auth.php' class='auth'> ВХОД </a>";
+                }
+            ?>
             </div>
         </div>
 

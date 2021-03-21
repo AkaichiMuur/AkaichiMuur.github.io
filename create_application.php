@@ -16,17 +16,15 @@ $result_user = mysqli_query($link, $query_user) or die('Ошибка '. mysqli_e
 $row_user = mysqli_fetch_array($result_user);
 $id_user = $row_user[0];
 
-
-
 $name_input = $_POST['name_input'];
 $description_input = $_POST['description_input'];
-$option_one = $_POST['option_one'];
+$select_one = $_POST['select_one'];
 $pic_input = $_POST['pic_input'];
 $name_input = $_POST['name_input'];
 
 if (isset($_POST['submit_user'])) 
 {
-    $insert_app = "INSERT INTO `application` (`id_app`, `name_app`, `description_app`, `description_decline`, `id_category`, `before_img`, `after_img`, `status_app`, `date_app`, `id_user`) VALUES (NULL, '$name_input', '$description_input', NULL, '$option_one', '$pic_input', NULL, 'Новая', NOW(), '$id_user')";
+    $insert_app = "INSERT INTO `application` (`id_app`, `name_app`, `description_app`, `description_decline`, `category`, `before_img`, `after_img`, `status_app`, `date_app`, `id_user`) VALUES (NULL, '$name_input', '$description_input', NULL, '$select_one', '$pic_input', NULL, 'Новая', NOW(), '$id_user')";
     $result_insert = mysqli_query($link, $insert_app) or die("Ошибка ". mysqli_error($link));
 
     if ($result_insert)
@@ -75,16 +73,10 @@ if (isset($_POST['submit_user']))
                 <input type="text" name="description_input" class="input_user" placeholder="Описание" required><br> 
                 
 				<select class="select" name="select_one">
-                <? 
-                
-                    $query_category = "SELECT `id_category` FROM `category`";
-                    $result_category = mysqli_query($link, $query_category) or die('Ошибка '. mysqli_error($link));
-
-                ?>
-					<option class="disabled" label>Выберите категорию</option>
-					<option name="option_one" value="1">Ремонт дороги</option>
-					<option name="option_one" value="2">Ремонт детской площадки</option>
-					<option name="option_one" value="3">Ремонт здания</option>
+					<option disabled>Выберите категорию</option>
+					<option name="option_one" value="Ремонт дороги">Ремонт дороги</option>
+					<option name="option_one" value="Ремонт детской площадки">Ремонт детской площадки</option>
+					<option name="option_one" value="Ремонт здания">Ремонт здания</option>
 				</select><br> 
 
                 <input type="file" name="pic_input" id="file" accept=".png, .jpg, .jpeg, .bmp" class="pic_input" required><br> 

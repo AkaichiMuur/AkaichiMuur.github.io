@@ -3,10 +3,14 @@
 session_start();
 require_once "connection.php";
 
-if (empty($_SESSION['username'])) {
+if (empty($_SESSION['username'])) 
+{
     header('Location: auth.php');
     exit();
 }
+
+$SESSIONname = $_SESSION['username'];
+
 
 ?>
 
@@ -31,7 +35,7 @@ if (empty($_SESSION['username'])) {
     <main>
         <div class="main_box_1">
             <div class="box_user_1">
-                <p class="username"> Панель администратора: ADMIN</p>
+                <p class="username"> Панель администратора: <? echo $SESSIONname; ?></p>
             </div>
             <div class="box_user_2">
                 <form method="POST" action="logout.php" class="box_submit">
